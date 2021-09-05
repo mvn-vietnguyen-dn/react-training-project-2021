@@ -3,7 +3,7 @@ import { Button, Rate } from "antd";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { toggleFavourite } from "../../store/favouriteSlice";
+import { toggleFavouriteId } from "../../store/productSlice";
 import { AppDispatch, RootState } from "../../store";
 
 export interface ProductProps {
@@ -26,7 +26,7 @@ export const Product: FC<ProductProps> = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const favouritedProductIds = useSelector(
-    (state: RootState) => state.favourite.ids
+    (state: RootState) => state.products.favouriteIds
   );
 
   return (
@@ -51,7 +51,7 @@ export const Product: FC<ProductProps> = ({
               className={`btn-favourite ${
                 favouritedProductIds?.includes(id) ? "favourited" : ""
               }`.trim()}
-              onClick={() => dispatch(toggleFavourite(id))}
+              onClick={() => dispatch(toggleFavouriteId(id))}
             >
               Favourite
             </Button>

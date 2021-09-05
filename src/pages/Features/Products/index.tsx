@@ -9,24 +9,37 @@ import {
   BackTop,
 } from "antd";
 import { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
-import axios from "../../../core/services/api";
+import axiosInstance from "../../../core/services/api";
 import { Product, ProductProps } from "../../../components/Product";
+import { AppDispatch } from "../../../store";
+import { filterFavouriteIds } from "../../../store/productSlice";
 
 const { Content } = Layout;
 
 export const Products = () => {
-  const [productsList, setProductsList] = useState<ProductProps[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [productList, setProductsList] = useState<ProductProps[]>([]);
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    axios.get("/products").then((res) => setProductsList(res?.data));
-  }, []);
+    const fetchProducts = async () => {
+      try {
+        const products = await axiosInstance.get("/products");
+        setProductsList(products.data);
+        dispatch(filterFavouriteIds(products.data));
+      } finally {
+        //
+      }
+    };
+    fetchProducts();
+  }, [dispatch]);
 
   const productsListWithPaging = useMemo(
-    () => productsList.slice((currentPage - 1) * 12, currentPage * 12),
-    [productsList, currentPage]
+    () => productList.slice((currentPage - 1) * 12, currentPage * 12),
+    [productList, currentPage]
   );
 
   return (
@@ -58,7 +71,7 @@ export const Products = () => {
             defaultCurrent={currentPage}
             current={currentPage}
             defaultPageSize={12}
-            total={productsList.length}
+            total={productList.length}
             onChange={(page: number) => setCurrentPage(page)}
           />
           <BackTop />

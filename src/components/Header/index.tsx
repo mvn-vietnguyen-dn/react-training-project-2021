@@ -9,7 +9,7 @@ const { Header: AntdHeader } = Layout;
 
 export const Header = () => {
   const favouriteCount = useSelector(
-    (state: RootState) => state.favourite.ids.length
+    (state: RootState) => state.products.favouriteIds.length
   );
 
   return (

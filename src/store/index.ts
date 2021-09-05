@@ -1,13 +1,26 @@
-import { configureStore } from "@reduxjs/toolkit";
-import favouriteReducer from "./favouriteSlice";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
-export const store = configureStore({
-  reducer: {
-    favourite: favouriteReducer,
-  },
+import productReducer from "./productSlice";
+import commonReducer from "./commonSlice";
+
+const persistConfig = {
+  key: "root",
+  storage,
+  blacklist: ["common"],
+};
+
+const rootReducer = combineReducers({
+  products: productReducer,
+  common: commonReducer,
 });
 
-// Infer the `RootState` and `AppDispatch` types from the store itself
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+});
+
 export type RootState = ReturnType<typeof store.getState>;
-// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;

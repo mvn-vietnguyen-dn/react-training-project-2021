@@ -1,8 +1,8 @@
-import { Layout, Breadcrumb, Rate, Space, Spin } from "antd";
-import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Layout, Breadcrumb, Rate, Space, Spin } from "antd";
 
-import axios from "../../../core/services/api";
+import axiosInstance from "../../../core/services/api";
 import { ProductProps } from "../../../components/Product";
 
 const { Content } = Layout;
@@ -12,12 +12,16 @@ export const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState<ProductProps>();
 
   useEffect(() => {
-    axios
-      .get(`/products/${productId}`)
-      .then((res) => setProductDetail(res.data));
+    const fetchProductById = async () => {
+      try {
+        const product = await axiosInstance.get(`/products/${productId}`);
+        setProductDetail(product.data);
+      } finally {
+        //
+      }
+    };
+    fetchProductById();
   }, [productId]);
-
-  console.log(productDetail);
 
   return (
     <Content className="page-product-detail page-wrapper">
@@ -46,7 +50,10 @@ export const ProductDetail = () => {
             <h4 className="product-price">Price: {productDetail?.price} $</h4>
             <h4 className="product-price">
               Rating:
-              <Rate className="ml-10" value={Math.ceil(productDetail?.rating?.rate || 0)} />
+              <Rate
+                className="ml-10"
+                value={Math.ceil(productDetail?.rating?.rate || 0)}
+              />
             </h4>
           </div>
         </div>
