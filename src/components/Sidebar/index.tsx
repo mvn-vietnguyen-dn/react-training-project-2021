@@ -1,7 +1,7 @@
 import { FC, useCallback, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Layout, Menu } from "antd";
-import { UserOutlined } from "@ant-design/icons";
+import { CarOutlined, HomeOutlined } from "@ant-design/icons";
 
 const { Sider } = Layout;
 const { Item: MenuItem } = Menu;
@@ -25,12 +25,12 @@ export const Sidebar: FC = () => {
         defaultSelectedKeys={["/"]}
         selectedKeys={[selectedKeys]}
       >
-        <MenuItem key="/" icon={<UserOutlined />}>
+        <MenuItem key="/" icon={<HomeOutlined />}>
           <NavLink to="/" isActive={isNavLinkActive}>
             Home
           </NavLink>
         </MenuItem>
-        <MenuItem key="/products" icon={<UserOutlined />}>
+        <MenuItem key="/products" icon={<CarOutlined />}>
           <NavLink to="/products" isActive={isNavLinkActive}>
             Products
           </NavLink>
