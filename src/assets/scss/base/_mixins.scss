@@ -134,3 +134,10 @@ $paddingOrmargin: (m: 'margin', p: 'padding');
 }
 @include buildSpace('m'); // Margin
 @include buildSpace('p'); // Padding
+
+@mixin line-clamp($row) {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: $row;
+  -webkit-box-orient: vertical;
+}

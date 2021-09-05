@@ -1,0 +1,22 @@
+.layout-content {
+  overflow: auto;
+}
+.page-wrapper {
+  padding: 40px;
+  background-color: map-get($colors, white);
+  min-height: initial;
+  position: relative;
+  .ant-breadcrumb {
+    margin-bottom: 40px;
+  }
+  .page-title {
+    margin-bottom: 20px;
+  }
+  .loading-spin {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    transform: translateX(-50%);
+  }
+}
