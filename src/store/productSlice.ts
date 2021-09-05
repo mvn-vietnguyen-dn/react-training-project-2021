@@ -20,7 +20,7 @@ export const productSlice = createSlice({
       if (favouriteIndex !== -1) {
         state.favouriteIds.splice(favouriteIndex, 1);
       } else {
-        state.favouriteIds = [...state.favouriteIds, action.payload];
+        state.favouriteIds.push(action.payload);
       }
     },
     filterFavouriteIds: (state, action: PayloadAction<ProductProps[]>) => {
