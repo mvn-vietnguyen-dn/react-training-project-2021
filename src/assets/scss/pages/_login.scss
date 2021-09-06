@@ -1,0 +1,18 @@
+.page-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: map-get($colors, white);
+  .login-form-wrapper {
+    width: 450px;
+    padding: 40px;
+    border: 1px solid map-get($colors, border-gray);
+    border-radius: 4px;
+    background-color: map-get($colors, bg-gray-light);
+    box-shadow: 2px 2px 4px 2px #eee;
+    .login-title {
+      text-align: center;
+      font-size: map-get($h-font-size, h1);
+    }
+  }
+}

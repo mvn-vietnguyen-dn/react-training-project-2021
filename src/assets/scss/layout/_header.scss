@@ -3,6 +3,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 100px;
+  color: map-get($colors, white);
   .app-title {
     display: flex;
     align-items: center;
@@ -12,6 +13,11 @@
   .header-icon {
     color: map-get($colors, white);
     font-size: 20px;
+    cursor: pointer;
+  }
+  .logout-icon {
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
   }
   .favourite-icon {
