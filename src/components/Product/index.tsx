@@ -39,6 +39,7 @@ export const Product: FC<ProductProps> = ({
           <h5 className="product-title">{title}</h5>
           <p className="product-description">{description}</p>
           <Rate
+            disabled
             className="product-rating"
             value={Math.ceil(rating?.rate || 0)}
           />

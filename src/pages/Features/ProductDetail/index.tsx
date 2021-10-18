@@ -51,6 +51,7 @@ export const ProductDetail = () => {
             <h4 className="product-price">
               Rating:
               <Rate
+                disabled
                 className="ml-10"
                 value={Math.ceil(productDetail?.rating?.rate || 0)}
               />
